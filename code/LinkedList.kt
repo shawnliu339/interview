@@ -52,37 +52,42 @@ class MyLinkedList<T> {
         return getNode(index).value
     }
 
-    fun add(index: Int, value: T) {
-        if (index < 0 || index > size) {
-            throw Exception("Bad")
-        }
-        val old = getNode(index)
-        val new = Node(prev = old.prev, next = old, value = value)
-        old.prev = new
-        new.prev.next = new
-        size++
-    }
-
     fun add(value: T) {
         add(size, value)
     }
 
-    fun remove(index: Int): T {
-        if (index < 0 || index > size - 1) {
+    fun add(index: Int, value: T) {
+        if (index < 0 || index > size) {
+            throw Exception("Bad")
+        }
+
+        val target = getNode(index)
+        val add = Node(prev = target.prev, next = target, value = value)
+        target.prev.next = add
+        target.prev = add
+        size++
+    }
+
+    fun remove(index: Int) {
+        if (index < 0 || index >= size || size == 0) {
             throw Exception("bad")
         }
-        val old = getNode(index)
-        old.prev.next = old.next
-        old.next.prev = old.prev
+        val target = getNode(index)
+        target.prev.next = target.next
+        target.next.prev = target.prev
         size--
-        return old.value!!
     }
 
     override fun toString(): String {
         var node = head
-        return (0 until size).map {
-            node = node.next
-            node.value
-        }.joinToString()
+        return buildString {
+            append("[")
+            append(
+                (0 until size).map {
+                    node = node.next
+                    node.value
+                }.joinToString())
+            append("]")
+        }
     }
 }
