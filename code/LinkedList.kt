@@ -25,14 +25,19 @@ class MyLinkedList<T> {
         tail.prev = head
     }
 
+    /**
+     * 因为都是向getNode的左侧添加新的node，
+     * 因此，getNode(size)返回tail
+     * O(n/2)
+     */
     private fun getNode(index: Int): Node<T> {
         if (index < 0 || index > size) {
             throw Exception("Bad")
         }
 
         return if (index < size / 2) {
-            var node = head.next
-            for (i in 0 until index) {
+            var node = head
+            for (i in 0..index) {
                 node = node.next
             }
             node
@@ -52,6 +57,9 @@ class MyLinkedList<T> {
         return getNode(index).value
     }
 
+    /**
+     * O(n/2 + 1)
+     */
     fun add(value: T) {
         add(size, value)
     }
