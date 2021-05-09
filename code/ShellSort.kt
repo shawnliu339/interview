@@ -1,15 +1,16 @@
 fun shellSort(array: Array<Int>) {
-    val intervals = arrayOf(5, 3, 1)
-    intervals.forEach { interval ->
-        (interval until array.size step interval).forEach { i ->
+    var gap = array.size / 2
+    while (gap > 0) {
+        for (i in gap until array.size step gap) {
             val tmp = array[i]
             var j = i
-            while (j - interval >= 0 && array[j - interval] > tmp) {
-                array[j] = array[j - interval]
-                j -= interval
+            while (j - gap >= 0 && array[j - gap] > tmp) {
+                array[j] = array[j - gap]
+                j -= gap
             }
             array[j] = tmp
         }
+        gap /= 2
     }
 }
 

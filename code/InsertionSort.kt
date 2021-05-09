@@ -1,5 +1,5 @@
 fun insertionSort(array: Array<Int>) {
-    (1 until array.size).forEach { i ->
+    for (i in 1 until array.size) {
         val tmp = array[i]
         var j = i
         while (j - 1 >= 0 && array[j - 1] > tmp) {
