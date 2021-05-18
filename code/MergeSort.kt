@@ -54,7 +54,7 @@ fun mergeSort(
     }
 
     // copy to original array
-    for (i in 0 until length) {
+    for (i in startIndex..endIndex) {
         origin[i] = tmpArray[i]
     }
 }
