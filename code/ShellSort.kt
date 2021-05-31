@@ -1,14 +1,16 @@
 fun shellSort(array: Array<Int>) {
     var gap = array.size / 2
     while (gap > 0) {
-        for (i in gap until array.size step gap) {
-            val tmp = array[i]
-            var j = i
-            while (j - gap >= 0 && array[j - gap] > tmp) {
-                array[j] = array[j - gap]
-                j -= gap
+        for (i in gap until array.size) {
+            val pivot = array[i]
+            for (j in i - gap downTo 0 step gap) {
+                if (pivot < array[j]) {
+                    array[j + gap] = array[j]
+                    array[j] = pivot
+                } else {
+                    break
+                }
             }
-            array[j] = tmp
         }
         gap /= 2
     }
