@@ -9,11 +9,12 @@ fun quickSort(array: Array<Int>, left: Int, right: Int) {
     var start = left
     var end = right - 1
 
-    while (start < end) {
-        while (start < end && array[start] < pivot) {
+    while (start <= end) {
+        // 如果没有等于，[1, 1, 1, 9]无法正常排序
+        while (start <= end && array[start] < pivot) {
             start++
         }
-        while (start < end && array[end] > pivot) {
+        while (start <= end && array[end] > pivot) {
             end--
         }
         if (start < end) {
