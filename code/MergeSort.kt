@@ -37,6 +37,7 @@ fun mergeSort(
     var tmpPosition = startIndex
     var leftPosition = startIndex
     var rightPosition = rightStart
+    // 需要有等于，因为，左右指针相等时，相当于数组中还剩最后一个元素，仍需要进行比较。
     while (leftPosition <= centerIndex && rightPosition <= endIndex) {
         if (origin[leftPosition] < origin[rightPosition]) {
             tmpArray[tmpPosition++] = origin[leftPosition++]
