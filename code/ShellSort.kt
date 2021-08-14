@@ -22,6 +22,25 @@ fun shellSort(array: Array<Int>) {
 }
 
 /**
+ * 代码易实现版的另一个实现。（该实现比较符合自己的编码风格）
+ */
+fun shellSort(array: Array<Int>) {
+    var gap = array.size / 2
+    while (gap > 0) {
+        for (i in gap..array.lastIndex) {
+            val pivot = array[i]
+            var j = i
+            while (j - gap >= 0 && pivot < array[j - gap]) {
+                array[j] = array[j - gap]
+                j -= gap
+            }
+            array[j] = pivot
+        }
+        gap /= 2
+    }
+}
+
+/**
  * 第二种写法，与该网站的动图的执行顺序完全一致。
  * https://www.cnblogs.com/onepixel/p/7674659.html
  * 先将第一组中的所有数比较完成，然后再比较第二组数中的所有数，以此类推。
