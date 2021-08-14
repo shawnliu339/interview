@@ -19,8 +19,6 @@ fun quickSort(array: Array<Int>, left: Int, right: Int) {
         }
         if (start < end) {
             swap(array, start++, end--)
-        } else {
-            break
         }
     }
 
