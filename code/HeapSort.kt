@@ -50,3 +50,24 @@ fun swap(array: Array<Int>, left: Int, right: Int) {
 val array = arrayOf(2, 5, 3, 1, 10, 4)
 heapSort(array)
 array.toList()
+
+/**
+ * 该错误示范为双循环n^2的复杂度，所以，不正确。
+ * 仅仅做到了形似大顶堆， 但是，并没有实现大顶堆的本质，
+ * 即在建立起大顶堆后，只有树中的变动分支才需重新排序。
+ * 正是因为只有变动分支才需要重新排列，
+ * 所以，heap sort的时间复杂度为nlog(n)。
+ */
+fun incorrectHeapSort(array: Array<Int>) {
+    for (i in array.lastIndex downTo 0) {
+        var j = i
+        while (j>0) {
+            val parent = (j - 1) / 2
+            if (array[parent] < array[j]) {
+                swap(array, parent, j)
+            }
+            j--
+        }
+        swap(array, 0, i)
+    }
+}
