@@ -27,6 +27,16 @@ fun adjust(array: Array<Int>, length: Int, index: Int) {
 
 fun buildMaxHeap(array: Array<Int>) {
     val parent = (array.lastIndex - 1) / 2
+    /*
+    while (parentIndex >= 0) {
+        adjust(array, parentIndex, array.lastIndex)
+        parentIndex = (parentIndex - 1) / 2
+    }
+    以上写法不正确：
+    1. 会出现死循环：(0 - 1)/2值为0而不为-0.5
+    2. 无法对整个树进行遍历，因此，无法找到最大值。
+       例如：测试用例中右侧分支的100(index=5)无法被放置堆顶。
+     */
     for (i in parent downTo 0) {
         adjust(array, array.size, i)
     }
@@ -47,7 +57,7 @@ fun swap(array: Array<Int>, left: Int, right: Int) {
     array[right] = tmp
 }
 
-val array = arrayOf(2, 5, 3, 1, 10, 4)
+val array = arrayOf(81, 94, 11, 96, 12, 100, 17, 95)
 heapSort(array)
 array.toList()
 
