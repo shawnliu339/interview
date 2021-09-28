@@ -8,6 +8,11 @@ fun quickSort(willBeSorted: Array<Int>) {
     quickSort(willBeSorted, 0, willBeSorted.size - 1)
 }
 
+/**
+* 取第一个值，中间值，以及最后一个值进行排序。
+* 将最大值和最小值分别放在最前和最后。
+* 中间值作为标准值，放在倒数第二位。
+*/
 fun getPivot(array: Array<Int>, left: Int, right: Int): Int {
     val center = (left + right) / 2
     if (array[center] < array[left]) {
@@ -29,7 +34,9 @@ fun quickSort(willBeSorted: Array<Int>, left: Int, right: Int) {
         return
     }
     val pivot = getPivot(willBeSorted, left, right)
-    // start和end不从+1和-2开始，是因为只有2项的情况无法正常排序
+    // 因为，标准值在倒数第二位，
+    // 所以，实质是排序第二位(+1)到倒数第三位(-2)。
+    // 但是，start和end不从+1和-2开始，是因为只有2项的情况无法正常排序
     var start = left
     var end = right - 1
     while (start < end) {
